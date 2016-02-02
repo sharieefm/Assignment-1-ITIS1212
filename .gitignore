@@ -10,3 +10,603 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+import java.util.*;
+import java.awt.*;
+
+/**
+ * Class that represents a turtle which is similar to a Logo turtle.
+ * This class inherts from SimpleTurtle and is for students
+ * to add methods to.
+ *
+ * Copyright Georgia Institute of Technology 2004
+ * @author Barb Ericson ericson@cc.gatech.edu
+ */
+public class Turtle extends SimpleTurtle
+{
+  ////////////////// constructors ///////////////////////
+  
+  /** Constructor that takes the x and y and a picture to
+    * draw on
+    * @param x the starting x position
+    * @param y the starting y position
+    * @param picture the picture to draw on
+    */
+  public Turtle (int x, int y, Picture picture) 
+  {
+    // let the parent constructor handle it
+    super(x,y,picture);
+  }
+  
+  /** Constructor that takes the x and y and a model
+    * display to draw it on
+    * @param x the starting x position
+    * @param y the starting y position
+    * @param modelDisplayer the thing that displays the model
+    */
+  public Turtle (int x, int y, 
+                 ModelDisplay modelDisplayer) 
+  {
+    // let the parent constructor handle it
+    super(x,y,modelDisplayer);
+  }
+  
+  /** Constructor that takes the model display
+    * @param modelDisplay the thing that displays the model
+    */
+  public Turtle (ModelDisplay modelDisplay) 
+  {
+    // let the parent constructor handle it
+    super(modelDisplay);
+  }
+  
+  /**
+   * Constructor that takes a picture to draw on
+   * @param p the picture to draw on
+   */
+  public Turtle (Picture p)
+  {
+    // let the parent constructor handle it
+    super(p);
+  }  
+  
+  /////////////////// methods ///////////////////////
+  
+  
+  public static void main(String[] args)
+  {
+    World earth = new World();
+    Turtle t1 = new Turtle(earth);
+    t1.forward();
+  }
+  
+  public void drawT() { 
+    this.forward(100); 
+    this.turnLeft(); 
+    this.penUp(); 
+    this.forward(40); 
+    this.turn(180); 
+    this.penDown(); 
+    this.forward(80); 
+    this.hide();
+    
+  }
+  public void drawQuestionMark(Color c) { 
+    // assumes we begin facing up (North) with penUp, 
+    // and that we are at the bottom-left of where the letter is supposed to appear
+    
+    // first move over while pen is up
+    this.turnRight();
+    this.forward(38);
+    // now put pen down, set color
+    this.setPenColor(c);
+    this.penDown();
+    // draw vertical part of bottom of question mark
+    this.forward(4);
+    this.turnLeft();
+    this.forward(4);
+    this.turnLeft();
+    this.forward(4);
+    this.turnLeft();
+    this.forward(4);
+    this.turn(180);
+    
+    // move up a bit
+    this.penUp(); 
+    this.forward(10); 
+    
+    // draw stick below curve
+    this.penDown(); 
+    this.forward(20); 
+    
+    // draw round part of question mark
+    int angle = -40;
+    int dist = 15;
+    this.turnRight();
+    this.forward(5);
+    this.turn(angle);
+    this.forward(dist);
+    this.turn(angle);
+    this.forward(dist);
+    this.turn(angle);
+    this.forward(dist);
+    this.turn(angle);
+    this.forward(dist);
+    this.turn(angle);
+    this.forward(dist);
+    
+    
+    // move to bottom right of letter area
+    this.penUp();
+    this.turnLeft();
+    this.forward(40);
+    this.turn(20);
+    this.forward(30);
+    
+    // move to next letter position`
+    this.turnLeft();
+    this.forward(35);
+    this.turnLeft();  
+    
+  } // end of question mark method
+  
+  
+  public void drawExclamationMark(Color c) { 
+    // assumes we begin facing up (North) with penUp, 
+    // and that we are at the bottom-left of where the letter is supposed to appear
+    
+    // first move over while pen is up
+    this.turnRight();
+    this.forward(38);
+    // now put pen down, set color
+    this.setPenColor(c);
+    this.penDown();
+    // draw bottom of exclamation mark
+    this.forward(4);
+    this.turnLeft();
+    this.forward(4);
+    this.turnLeft();
+    this.forward(4);
+    this.turnLeft();
+    this.forward(4);
+    this.turn(180);
+    
+    // move up a bit
+    this.penUp(); 
+    this.forward(10); 
+    // move right a bit
+    this.turnRight();
+    this.forward(2);
+    this.turnLeft();
+    
+    // draw top of exclamation mrk
+    this.penDown(); 
+    this.forward(65); 
+    
+    // move to bottom right of letter area
+    this.penUp();
+    this.turn(180);
+    this.forward(75);
+    this.turnLeft();
+    this.forward(25);
+    
+    // move to next letter position`
+    //this.turnLeft();
+    this.forward(35);
+    this.turnLeft();  
+    
+  } // end of exclamation mark method
+
+   /**The four methods below are for part 1 of the assignment, where I am tasked to draw the last four letters of my last name (MUHAMMAD) (MUHA)
+     *As the document goes on, more methods for different actions occur
+     * The methods for drawing the letters in my last name begin on line 197 and end on line 312
+     * Methods for drawing the letters in my last name Bold begin on line 316 and in on line 452
+     * Methods for drawing the letters in my last name with Sizing options while maintaining bold possibility begin on line 461 and end on line 596
+     */
+  
+  
+   /**Drawing the letter M for my last name
+    */
+    //Method to call upon to draw M as well as the opening bracket
+    public void drawM(Color c) {
+    //Setting the Pen color as well as its state
+    this.setPenColor(c);
+    this.penUp();
+    //Setting integer values and position
+    int x = this.getXPos();
+    int y = this.getYPos();
+    //Printing out the coordinates
+    System.out.println(x);
+    System.out.println(y);
+    /**My original coordinates
+      */
+    //this.moveTo(47, 385);
+    //Re-declare the turtle's state
+    this.penDown();
+    //My coordinates to control direction
+    this.moveTo(x, (y - 100));
+    this.moveTo((x+40),(y));
+    this.moveTo((x+80),(y-100));
+    this.moveTo((x+80), y);
+    this.penUp();
+    this.moveTo((x+90), y);
+    this.setHeading(0);
+  }    
+  
+  
+  
+    /**Drawing the letter U in my last name.
+    */
+    //Method to call upon as well as the opening bracket
+    public void drawU(Color c) {
+    //Declaring the pen color as well as its state
+    this.setPenColor(c);
+    this.penDown();
+    //Setting integer values and position
+    int x = this.getXPos();
+    int y = this.getYPos();
+    //Printing out the coordinates
+    System.out.println(x);
+    System.out.println(y);
+    /**My original coordinates
+      */
+    //this.moveTo(137, 385);
+    //My coordinates to control direction
+    this.moveTo(x, (y-100));
+    this.moveTo((x), (y));
+    this.moveTo((x+80), (y));
+    this.moveTo((x+80), (y - 100));
+    this.penUp();
+    this.setHeading(0);
+    this.moveTo((x+90), y);
+  }
+  
+  
+    /**Drawing the letter H for my last name
+    */
+    //Method to call upon to draw H as well as the opening bracket
+    public void drawH(Color c) {
+    //Setting the Pen color as well as its state
+    this.setPenColor(c);
+    this.penUp();
+    //Setting integer values and position
+    int x = this.getXPos();
+    int y = this.getYPos();
+    //Printing out the coordinates
+    System.out.println(x);
+    System.out.println(y);
+    //My original coordinates as well Re- declaring pen state
+    //this.moveTo(227, 285);
+    this.penDown();
+    this.moveTo(x,(y+100));
+    this.penUp();
+    this.moveTo(x, (y+40));
+    this.penDown();
+    this.moveTo((x+80),(y+40));
+    this.penUp();
+    this.moveTo((x+80),(y+100));
+    this.penDown();
+    this.moveTo((x+80), (y));
+    this.penUp();
+    this.moveTo((x+80),(y+100));
+    this.moveTo((x+90),(y+100));
+    this.setHeading(0);
+    
+  }
+  
+  
+    /**Drawing the letter A for my last name
+    */
+    //Method to call upon to draw A as well as the opening bracket
+    public void drawA(Color c) {
+    //Setting the Pen color as well as its state
+    this.setPenColor(c);
+    this.penUp();
+    //Setting integer values and position
+    int x = this.getXPos();
+    int y = this.getYPos();
+    //Printing out the coordinates
+    System.out.println(x);
+    System.out.println(y);
+    this.penDown();
+    //My original coordinates  this.moveTo(357, 285);
+    this.moveTo((x), (y-100));
+    this.moveTo((x+80), (y-100));
+    this.moveTo((x+80), (y));
+    this.penUp();
+    this.moveTo((x+80), (y-50));
+    this.penDown();
+    this.moveTo((x), (y-50)); 
+    this.penUp();
+    this.moveTo((x+80), (y-50));
+    this.moveTo((x+80), (y-100));
+    this.moveTo((x+90), (y));
+    this.setHeading(0);
+  }
+    
+    /**These next four methods below are for part 2 of the assignment where I am tasked to draw the last four letters of my last name (MUHA) in bold
+  
+    /**Drawing the letter M in my last name bold
+    */
+    //Method to call upon
+    public void drawMBold(Color c, boolean bold) {
+    //Statements
+    if (bold == true) 
+    {this.setPenWidth(4);
+    } 
+    else {  
+      this.setPenWidth(2);
+    }
+    //Setting pin color and state
+    this.setPenColor(c);
+    this.penUp();
+    //Adding integers for coordinates
+    int x = this.getXPos();
+    int y = this.getYPos();
+    System.out.println(x);
+    System.out.println(y);
+    /**My original coordinates re-stating the pen state
+      */
+    //this.moveTo(47, 385);
+    this.penDown();
+    //My coordinates to control
+    this.moveTo(x, (y - 100));
+    this.moveTo((x+40),(y));
+    this.moveTo((x+80),(y-100));
+    this.moveTo((x+80), y);
+    this.penUp();
+    this.moveTo((x+90), y);
+    this.setHeading(0);
+  } 
+  
+    /**Drawing the letter U in my last name bold
+    */
+    //Method to call upon
+    public void drawUBold(Color c, boolean bold) {
+    //Statements
+    if (bold == true) 
+    {this.setPenWidth(4);
+    } 
+    else {  
+      this.setPenWidth(2);
+    }
+    //Declaring the pen color as well as its state
+    this.setPenColor(c);
+    this.penDown();
+    //Setting integer values and position
+    int x = this.getXPos();
+    int y = this.getYPos();
+    //Printing out the coordinates
+    System.out.println(x);
+    System.out.println(y);
+    /**My original coordinates
+      */
+    //this.moveTo(137, 385);
+    //My coordinates to control direction
+    this.moveTo(x, (y-100));
+    this.moveTo((x), (y));
+    this.moveTo((x+80), (y));
+    this.moveTo((x+80), (y - 100));
+    this.penUp();
+    this.setHeading(0);
+    this.moveTo((x+90), y);
+  }
+  
+    /**Drawing the letter H in my last name bold
+    */
+    //Method to call upon
+    public void drawHBold(Color c, boolean bold) {
+    //Statements
+    if (bold == true) 
+    {this.setPenWidth(4);
+    } 
+    else {  
+      this.setPenWidth(2);
+    }
+    //Setting the Pen color as well as its state
+    this.setPenColor(c);
+    this.penUp();
+    //Setting integer values and position
+    int x = this.getXPos();
+    int y = this.getYPos();
+    //Printing out the coordinates
+    System.out.println(x);
+    System.out.println(y);
+    //My original coordinates as well Re- declaring pen state
+    //this.moveTo(227, 285);
+    this.penDown();
+    this.moveTo(x,(y+100));
+    this.penUp();
+    this.moveTo(x, (y+40));
+    this.penDown();
+    this.moveTo((x+80),(y+40));
+    this.penUp();
+    this.moveTo((x+80),(y+100));
+    this.penDown();
+    this.moveTo((x+80), (y));
+    this.penUp();
+    this.moveTo((x+80),(y+100));
+    this.moveTo((x+90),(y+100));
+    this.setHeading(0);
+    
+  }
+    /**Drawing the letter A in my last name bold
+    */
+    //Method to call upon
+    public void drawABold(Color c, boolean bold) {
+    //Statements
+    if (bold == true) 
+    {this.setPenWidth(4);
+    } 
+    else {  
+      this.setPenWidth(2);
+    }
+    //Setting the Pen color as well as its state
+    this.setPenColor(c);
+    this.penUp();
+    //Setting integer values and position
+    int x = this.getXPos();
+    int y = this.getYPos();
+    //Printing out the coordinates
+    System.out.println(x);
+    System.out.println(y);
+    this.penDown();
+    //My original coordinates  this.moveTo(357, 285);
+    this.moveTo((x), (y-100));
+    this.moveTo((x+80), (y-100));
+    this.moveTo((x+80), (y));
+    this.penUp();
+    this.moveTo((x+80), (y-50));
+    this.penDown();
+    this.moveTo((x), (y-50)); 
+    this.penUp();
+    this.moveTo((x+80), (y-50));
+    this.moveTo((x+80), (y-100));
+    this.moveTo((x+90), (y));
+    this.setHeading(0);
+  } 
+    
+    /**These last four methods below are dedicated to drawing the four letters of my last name (MUHA) with sizing options, 
+      * these methods maintain the Bold statements but can be set to false in the interactions pane to render them mute.
+      */
+  
+    /**Drawing the letter M in my last name with bold statements and sizing
+    */
+    //My Statements
+    public void drawMBoldSize(Color c, boolean bold, int size) {
+    
+    if (bold == true) 
+    {this.setPenWidth(4);
+    } 
+    else {  
+      this.setPenWidth(2);
+    }
+    //Declaring the pen state and pen color
+    this.setPenColor(c);
+    this.penUp();
+    //Setting integer values and position
+    int x = this.getXPos();
+    int y = this.getYPos();
+    //My original coordinates
+    System.out.println(x);
+    System.out.println(y);
+    //this.moveTo(47, 385);
+    this.penDown();
+    this.moveTo(x, (y - (100 * size)));
+    this.moveTo((x+(40 *size)),(y));
+    this.moveTo((x+(80 * size)),(y-(100 * size)));
+    this.moveTo((x+(80 * size)),(y));
+    this.penUp();
+    this.moveTo((x+(90 * size)) , (y));
+    this.setHeading(0);
+  }
+  
+    /**Drawing the letter U in my last name with bold statements and sizing
+    */
+    //Method to call upon
+    public void drawUBoldSize(Color c, boolean bold, int size) {
+    //Statements
+    if (bold == true) 
+    {this.setPenWidth(4);
+    } 
+    else {  
+      this.setPenWidth(2);
+    }
+    //Declaring the pen color as well as its state
+    this.setPenColor(c);
+    this.penDown();
+    //Setting integer values and position
+    int x = this.getXPos();
+    int y = this.getYPos();
+    //Printing out the coordinates
+    System.out.println(x);
+    System.out.println(y);
+    /**My original coordinates
+      */
+    //this.moveTo(137, 385);
+    //My coordinates to control direction
+    this.moveTo(x, (y-(100 * size)));
+    this.moveTo((x), (y));
+    this.moveTo((x+(80 * size)), (y));
+    this.moveTo((x+(80 * size)), (y - (100 * size)));
+    this.penUp();
+    this.setHeading(0);
+    this.moveTo((x+(90 * size)), y);
+  }
+    
+    /**Drawing the letter H in my last name with bold statements and sizing
+    */
+    //Method to call upon
+    public void drawHBoldSize(Color c, boolean bold, int size) {
+    //Statements
+    if (bold == true) 
+    {this.setPenWidth(4);
+    } 
+    else {  
+      this.setPenWidth(2);
+    }
+    //Setting the Pen color as well as its state
+    this.setPenColor(c);
+    this.penUp();
+    //Setting integer values and position
+    int x = this.getXPos();
+    int y = this.getYPos();
+    //Printing out the coordinates
+    System.out.println(x);
+    System.out.println(y);
+    //My original coordinates as well Re- declaring pen state
+    //this.moveTo(227, 285);
+    this.penDown();
+    this.moveTo(x,(y+(100 * size)));
+    this.penUp();
+    this.moveTo(x, (y+(40 * size)));
+    this.penDown();
+    this.moveTo((x+(80 * size)),(y+(40 * size)));
+    this.penUp();
+    this.moveTo((x+(80 * size)),(y+(100 * size)));
+    this.penDown();
+    this.moveTo((x+(80 * size)), (y));
+    this.penUp();
+    this.moveTo((x+(80 * size)),(y+(100 * size)));
+    this.moveTo((x+(90 * size)),(y+(100 * size)));
+    this.setHeading(0);
+    
+  }
+    
+   /**Drawing the letter A in my last name with bold statements and sizing
+    */
+    //Method to call upon
+    public void drawABoldSize(Color c, boolean bold, int size) {
+    //Statements
+    if (bold == true) 
+    {this.setPenWidth(4);
+    } 
+    else {  
+      this.setPenWidth(2);
+    }
+    //Setting the Pen color as well as its state
+    this.setPenColor(c);
+    this.penUp();
+    //Setting integer values and position
+    int x = this.getXPos();
+    int y = this.getYPos();
+    //Printing out the coordinates
+    System.out.println(x);
+    System.out.println(y);
+    this.penDown();
+    //My original coordinates  this.moveTo(357, 285);
+    this.moveTo((x), (y-(100 * size)));
+    this.moveTo((x+(80 * size)), (y-(100 * size)));
+    this.moveTo((x+(80 * size)), (y));
+    this.penUp();
+    this.moveTo((x+(80 * size)), (y-(50 * size)));
+    this.penDown();
+    this.moveTo((x), (y-(50 * size))); 
+    this.penUp();
+    this.moveTo((x+(80 * size)), (y-(50 * size)));
+    this.moveTo((x+(80 * size)), (y-(100 * size)));
+    this.moveTo((x+(90 * size)), (y));
+    this.setHeading(0);
+  } 
+  
+  
+}// this } is the end of class Turtle, put all new methods before this
